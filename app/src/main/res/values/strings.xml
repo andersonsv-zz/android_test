@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!-- Error Page -->
+    <string name="error_title">turbulências na rede</string>
+    <string name="error_text">nosso cyber voo tá chocoalhando. dê uma checada na sua internet pra continuar com a gente :P</string>
+    <string name="error_try_again">tente de novo</string>
+    <string name="error_image_content_description">imagem de um gato branco sorrindo e com a mão na cabeça</string>
 </resources>

@@ -19,4 +19,21 @@
     <dimen name="textSize32sp">32sp</dimen>
     <dimen name="textSize36sp">36sp</dimen>
     <dimen name="textSize66sp">66sp</dimen>
+
+    <!-- Default margins -->
+    <dimen name="margin_smaller">4dp</dimen>
+    <dimen name="margin_small">6dp</dimen>
+    <dimen name="margin_normal">8dp</dimen>
+    <dimen name="margin_normal_plus">12dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_larger">24dp</dimen>
+    <dimen name="margin_huge">32dp</dimen>
+    <dimen name="margin_42dp">42dp</dimen>
+    <dimen name="margin_40dp">40dp</dimen>
+    <dimen name="margin_80dp">80dp</dimen>
+
+    <!--Button-->
+    <dimen name="button_radius">4dp</dimen>
+
+
 </resources>
