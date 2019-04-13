@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="commom">#787878</color>
+    <color name="listPrice">#ef7376</color>
+    <color name="detailPrice">#5a5857</color>
+    <color name="discountPrice">#ea737b</color>
+    <color name="error">#FFDD2C00</color>
 </resources>
