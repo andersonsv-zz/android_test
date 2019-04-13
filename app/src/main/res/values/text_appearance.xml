@@ -2,7 +2,7 @@
 
     <!-- Typography -->
     <style name="Text">
-        <item name="android:textColor">@color/commom</item>
+        <item name="android:textColor">@color/gray</item>
         <item name="android:fontFamily">@font/proxima_nova_regular</item>
     </style>
 
