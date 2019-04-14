@@ -13,12 +13,20 @@ class MainActivity : AppCompatActivity() {
                 message.setText(R.string.title_home)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.title_dashboard)
+            R.id.navigation_search -> {
+                message.setText(R.string.title_search)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
+            R.id.navigation_camera -> {
+                message.setText(R.string.title_camera)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_mail -> {
+                message.setText(R.string.title_mail)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_user -> {
+                message.setText(R.string.title_user)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -27,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_error)
+        setContentView(R.layout.activity_main)
 
-       // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }
