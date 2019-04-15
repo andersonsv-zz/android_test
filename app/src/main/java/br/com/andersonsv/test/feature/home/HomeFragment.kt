@@ -6,16 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.andersonsv.test.R
+import br.com.andersonsv.test.adapter.HomeProductAdapter
+import br.com.andersonsv.test.extension.isNetworkConnected
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.enjoei.ProductApi
 import br.com.andersonsv.test.network.model.product.HomeProducts
+import br.com.andersonsv.test.network.model.product.Product
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeFragment : Fragment() {
     private lateinit var apiClient: ProductApi
+    lateinit var homeProductAdapter: HomeProductAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,14 +39,12 @@ class HomeFragment : Fragment() {
     companion object {
         const val TAG = "home"
         fun newInstance(): HomeFragment {
-            val homeFragment = HomeFragment()
-            return homeFragment
+            return HomeFragment()
         }
     }
 
     fun initialize() {
         apiClient = EnjoeiAPI.client.create(ProductApi::class.java)
-
     }
 
     private fun callHomeProductsApi(): Call<HomeProducts> {
@@ -48,35 +53,22 @@ class HomeFragment : Fragment() {
 
     private fun loadFirstPage() {
 
-        //hideErrorView()
-
         callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
             override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
-                // Got data. Send it to adapter
-
                 Log.d("TAG", response.body().toString())
-                //hideErrorView()
 
-               /* val results = fetchResults(response)
-                var totalpages = fetchTotalPages(response)
-                TOTAL_PAGES = totalpages
-                Log.d(TAG, "results: $results")
-                Log.d(TAG, "totalpages: $totalpages")
-                main_progress.setVisibility(View.GONE)
-                moviesadapter.addAll(results)
-
-                if (currentPage <= TOTAL_PAGES)
-                    moviesadapter.addLoadingFooter()
-                else
-                    isLastPage = true*/
+                val products = response.body()!!.products
+                homeProductAdapter = HomeProductAdapter(context!!, products!!)
+                recyclerView.adapter = homeProductAdapter
+                recyclerView.layoutManager = LinearLayoutManager(context)
+                recyclerView.smoothScrollToPosition(products!!.size)
+                //lista_transacoes_listview.adapter = ListaTransacoesAdapter(this, transacoes)
             }
 
             override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
                 t.printStackTrace()
-               // showErrorView(t)
+                //showSnackBarError
             }
         })
     }
-
-
 }

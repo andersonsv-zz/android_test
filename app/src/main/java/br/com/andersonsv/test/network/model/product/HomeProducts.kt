@@ -6,7 +6,7 @@ data class HomeProducts(
     @field:Json(name= "pagination")
     val pagination: Pagination,
     @field:Json(name="products")
-    val products: List<Product>?
+    val products: MutableList<Product>?
 )
 
 
