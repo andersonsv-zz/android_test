@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
-import br.com.andersonsv.test.extension.isNetworkConnected
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.enjoei.ProductApi
 import br.com.andersonsv.test.network.model.product.HomeProducts
-import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class HomeFragment : Fragment() {
     private lateinit var apiClient: ProductApi
@@ -60,9 +59,10 @@ class HomeFragment : Fragment() {
                 val products = response.body()!!.products
                 homeProductAdapter = HomeProductAdapter(context!!, products!!)
                 recyclerView.adapter = homeProductAdapter
-                recyclerView.layoutManager = LinearLayoutManager(context)
+                val mLayoutManager = GridLayoutManager(context, 2)
+                recyclerView.layoutManager = mLayoutManager
                 recyclerView.smoothScrollToPosition(products!!.size)
-                //lista_transacoes_listview.adapter = ListaTransacoesAdapter(this, transacoes)
+                recyclerView.setHasFixedSize(true)
             }
 
             override fun onFailure(call: Call<HomeProducts>, t: Throwable) {

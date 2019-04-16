@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.andersonsv.test.R
+import br.com.andersonsv.test.extension.asBRL
+import br.com.andersonsv.test.extension.loadPrimaryPhotoImage
 import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.item_home_product.view.*
 
@@ -24,12 +26,11 @@ RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
     }
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewTitle = itemView.textViewTitle
-        val textViewPrice = itemView.textViewPrice
-
         fun bindView(product: Product) {
-            textViewTitle.text = product.title
-            textViewPrice.text = product.price.toString()
+
+            itemView.imageViewProduct.loadPrimaryPhotoImage(product.photos)
+            itemView.textViewTitle.text = product.title
+            itemView.textViewPrice.text = product.price.asBRL(true)
         }
     }
 }

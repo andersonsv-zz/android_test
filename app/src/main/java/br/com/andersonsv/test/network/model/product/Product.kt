@@ -25,7 +25,7 @@ data class Product(
     val content: String,
 
     @field:Json(name="photos")
-    val photos: List<Photo>,
+    val photos: MutableList<Photo>,
     @field:Json(name="user")
     val user: User
 )
