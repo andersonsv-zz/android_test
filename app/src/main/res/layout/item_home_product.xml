@@ -83,7 +83,7 @@
                     android:gravity="center"
                     android:id="@+id/linearLayoutAvatar"
                     android:background="@drawable/ic_border_product_list_avatar"
-                    android:padding="@dimen/padding_smaller">
+                    android:padding="@dimen/padding_small">
                 <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -92,8 +92,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:padding="@dimen/padding_smaller"
-                        android:layout_margin="@dimen/padding_smaller"/>
+                        android:layout_margin="@dimen/margin_small"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -102,7 +101,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:id="@+id/linearLayoutYeah"
-                    android:background="@drawable/ic_border_product_list_yeah">
+                    android:background="@drawable/ic_border_product_list_yeah"
+                    android:padding="@dimen/padding_small">
                 <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -110,9 +110,11 @@
                         tools:layout_editor_absoluteY="14dp" app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintEnd_toStartOf="@+id/textViewYeahs"
-                        app:srcCompat="@drawable/ic_like"/>
+                        app:srcCompat="@drawable/ic_like"
+                        android:paddingEnd="@dimen/padding_normal"/>
                 <TextView
                         android:text="TextView"
+                        android:gravity="center_horizontal|center_vertical"
                         android:layout_width="20dp"
                         android:layout_height="25dp" android:id="@+id/textViewYeahs"
                         tools:layout_editor_absoluteY="14dp"

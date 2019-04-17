@@ -38,11 +38,11 @@ fun ImageView.loadPrimaryPhotoImage(photos: MutableList<Photo>?) {
     photos?.get(0)?.let {
         val imageUrl = generateImageUrl(it.crop, it.gravity, it.publicId)
 
-        val px = Math.round(4 * (context.resources.displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+        val px = Math.round(16 * (context.resources.displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
 
         val multi = MultiTransformation<Bitmap>(
-            RoundedCornersTransformation(px, 0, RoundedCornersTransformation.CornerType.TOP_LEFT),
-                    RoundedCornersTransformation(px, 0, RoundedCornersTransformation.CornerType.TOP_RIGHT))
+            RoundedCornersTransformation(20, 0, RoundedCornersTransformation.CornerType.TOP_LEFT),
+                    RoundedCornersTransformation(20, 0, RoundedCornersTransformation.CornerType.TOP_RIGHT))
 
         with(this.context)
             .load(imageUrl)

@@ -44,7 +44,7 @@ RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
             }
 
             if(!product.size.isNullOrBlank()){
-                itemView.textViewSize.text = itemView.context.getString(R.string.commom_size) + " - " + product.size
+                itemView.textViewSize.text =  " - " + itemView.context.getString(R.string.commom_size) + " " + product.size
                 itemView.textViewSize.makeVisible()
                 itemView.textViewSize.gravity = Gravity.LEFT
                 itemView.textViewPrice.gravity = Gravity.RIGHT
