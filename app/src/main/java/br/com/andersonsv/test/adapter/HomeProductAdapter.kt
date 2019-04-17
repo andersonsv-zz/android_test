@@ -1,6 +1,7 @@
 package br.com.andersonsv.test.adapter
 
 import android.content.Context
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.extension.*
 import br.com.andersonsv.test.network.model.product.Product
+import com.google.android.material.resources.TextAppearance
 import kotlinx.android.synthetic.main.item_home_product.view.*
 import java.text.DecimalFormat
 
@@ -39,6 +41,13 @@ RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
 
                 itemView.textViewDiscountPorcentage.makeVisible()
                 itemView.textViewDiscountPorcentage.text = discount
+            }
+
+            if(!product.size.isNullOrBlank()){
+                itemView.textViewSize.text = itemView.context.getString(R.string.commom_size) + " - " + product.size
+                itemView.textViewSize.makeVisible()
+                itemView.textViewSize.gravity = Gravity.LEFT
+                itemView.textViewPrice.gravity = Gravity.RIGHT
             }
 
             itemView.imageViewAvatar.loadAvatar(product.user)

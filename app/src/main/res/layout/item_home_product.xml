@@ -32,51 +32,58 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageViewProduct"
                 app:layout_constraintTop_toTopOf="@+id/imageViewProduct"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewProduct"
+                android:id="@+id/textViewTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageViewProduct"
-                android:id="@+id/constraintLayoutTitleAndPrice"
-                android:padding="@dimen/padding_smaller">
-
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/Text.16sp.Regular"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewProduct"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayoutPriceAndSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
             <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewTitle"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    style="@style/Text.16sp.Regular"
-                    android:textAlignment="center"/>
-
-            <TextView
-                    android:text="TextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
                     android:id="@+id/textViewPrice"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_weight="1"
+                    style="@style/ProductPrice"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/textViewSize"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    style="@style/ProductSize"/>
+        </LinearLayout>
 
         <LinearLayout android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal" app:layout_constraintStart_toStartOf="parent"
                       app:layout_constraintEnd_toEndOf="parent"
-                      app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTitleAndPrice">
-
+                      android:id="@+id/linearLayoutAvatarYeah"
+                      app:layout_constraintTop_toBottomOf="@+id/linearLayoutPriceAndSize">
 
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1" android:gravity="center">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/linearLayoutAvatar"
+                    android:background="@drawable/ic_border_product_list_avatar"
+                    android:padding="@dimen/padding_smaller">
                 <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        tools:srcCompat="@tools:sample/avatars[1]"
                         android:id="@+id/imageViewAvatar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -86,7 +93,11 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1" android:gravity="center">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/linearLayoutYeah"
+                    android:background="@drawable/ic_border_product_list_yeah">
                 <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"

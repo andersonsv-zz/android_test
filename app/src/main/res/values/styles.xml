@@ -28,4 +28,22 @@
 
     </style>
 
+    <style name="ProductPrice">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:gravity">center|center_horizontal|center_vertical</item>
+        <item name="android:textAppearance">@style/Text.14sp.Bold</item>
+    </style>
+
+    <style name="ProductSize">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:gravity">center|center_horizontal|center_vertical</item>
+        <item name="android:textAppearance">@style/Text.14sp</item>
+    </style>
+
+    <style name="ProductLikesCount">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAppearance">@style/Text.16sp</item>
+    </style>
+
 </resources>

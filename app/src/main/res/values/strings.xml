@@ -8,6 +8,8 @@
     <string name="title_user">Conta</string>
     <string name="title_mail">Mail</string>
 
+    <string name="commom_size">tam</string>
+
     <!-- Home -->
     <string name="homeproductimage_image_product_content_description">imagem principal do produto</string>
 
