@@ -32,6 +32,8 @@
     <dimen name="margin_40dp">40dp</dimen>
     <dimen name="margin_80dp">80dp</dimen>
 
+    <dimen name="padding_smaller">4dp</dimen>
+
     <!--Button-->
     <dimen name="button_radius">4dp</dimen>
 
@@ -39,6 +41,9 @@
 
     <dimen name="padding_discount_porcentage">6dp</dimen>
 
+    <dimen name="grid_image_height">200dp</dimen>
+    <dimen name="cardview_default_elevation">4dp</dimen>
+    <dimen name="grid_item_margin">4dp</dimen>
 
 
 </resources>
