@@ -20,4 +20,12 @@
         <item name="android:paddingEnd">@dimen/margin_larger</item>
     </style>
 
+    <style name="DiscountPorcentage">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/ic_discount_porcentage</item>
+        <item name="android:padding">@dimen/padding_discount_porcentage</item>
+
+    </style>
+
 </resources>

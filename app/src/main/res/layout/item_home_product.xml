@@ -7,20 +7,21 @@
         android:layout_height="wrap_content">
 
     <ImageView
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="165dp"
             tools:srcCompat="@tools:sample/avatars[0]"
             android:id="@+id/imageViewProduct"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:contentDescription="@string/homeproductimage_image_product_content_description"/>
+            android:contentDescription="@string/homeproductimage_image_product_content_description"
+            android:scaleType="fitCenter"/>
     <TextView
-            android:text="10%"
+            style="@style/DiscountPorcentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewDiscountPorcentage"
             app:layout_constraintTop_toTopOf="@+id/imageViewProduct"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewProduct"/>
+            app:layout_constraintEnd_toEndOf="@+id/imageViewProduct" android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -78,10 +79,11 @@
 
         <ImageView
                 android:layout_width="25dp"
-                android:layout_height="25dp" tools:srcCompat="@tools:sample/avatars[14]"
+                android:layout_height="25dp"
                 android:id="@+id/imageViewYeah"
                 tools:layout_editor_absoluteY="14dp" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/textViewYeahs"/>
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/textViewYeahs"
+                app:srcCompat="@drawable/ic_like"/>
         <TextView
                 android:text="TextView"
                 android:layout_width="20dp"

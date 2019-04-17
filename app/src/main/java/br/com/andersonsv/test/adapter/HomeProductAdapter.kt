@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.andersonsv.test.R
-import br.com.andersonsv.test.extension.asBRL
-import br.com.andersonsv.test.extension.loadPrimaryPhotoImage
+import br.com.andersonsv.test.extension.*
 import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.item_home_product.view.*
+import java.text.DecimalFormat
 
 class HomeProductAdapter(private val context: Context, private var results: MutableList<Product>) :
 RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
@@ -31,6 +31,18 @@ RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
             itemView.imageViewProduct.loadPrimaryPhotoImage(product.photos)
             itemView.textViewTitle.text = product.title
             itemView.textViewPrice.text = product.price.asBRL(true)
+
+            if (product.discountPorcentage != 0.0) {
+
+                val df = DecimalFormat("#.###")
+                val discount = "-" + df.format(product.discountPorcentage) + "%"
+
+                itemView.textViewDiscountPorcentage.makeVisible()
+                itemView.textViewDiscountPorcentage.text = discount
+            }
+
+            itemView.imageViewAvatar.loadAvatar(product.user)
+            itemView.textViewYeahs.text = product.likesCount.toString()
         }
     }
 }

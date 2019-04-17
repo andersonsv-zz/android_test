@@ -35,5 +35,10 @@
     <!--Button-->
     <dimen name="button_radius">4dp</dimen>
 
+    <dimen name="commom_radius">4dp</dimen>
+
+    <dimen name="padding_discount_porcentage">6dp</dimen>
+
+
 
 </resources>

@@ -17,3 +17,5 @@ val noSymbolFormatter =
 
 fun Double.asBRL(includeCurrency: Boolean = false): String = if (includeCurrency)
     "R$ " + noSymbolFormatter.format(this) else noSymbolFormatter.format(this)
+
+fun Double.asDiscountPorcentage(): String = "-" + this + "%"
