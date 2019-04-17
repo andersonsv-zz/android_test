@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 style="@style/Text.16sp.Regular"
                 android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewProduct"/>
+                app:layout_constraintTop_toBottomOf="@+id/imageViewProduct" android:layout_marginTop="8dp"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="0dp"
@@ -48,7 +48,8 @@
                 android:id="@+id/linearLayoutPriceAndSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+                android:gravity="bottom|clip_vertical" android:layout_marginTop="8dp">
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -61,16 +62,18 @@
                     android:layout_height="30dp"
                     android:id="@+id/textViewSize"
                     android:layout_weight="1"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     style="@style/ProductSize"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal" app:layout_constraintStart_toStartOf="parent"
+                      android:orientation="horizontal"
+                      app:layout_constraintStart_toStartOf="parent"
                       app:layout_constraintEnd_toEndOf="parent"
                       android:id="@+id/linearLayoutAvatarYeah"
-                      app:layout_constraintTop_toBottomOf="@+id/linearLayoutPriceAndSize">
+                      app:layout_constraintTop_toBottomOf="@+id/linearLayoutPriceAndSize"
+                      android:gravity="top">
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -88,7 +91,9 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:padding="@dimen/padding_smaller"
+                        android:layout_margin="@dimen/padding_smaller"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
