@@ -20,13 +20,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        setUpFragments()
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.frameLayoutMain, homeFragment, homeFragment.tag)
+            .commit()
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                showFragment(homeFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search -> {
@@ -45,17 +48,4 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
-    private fun setUpFragments() {
-        supportFragmentManager.addAndHide(
-            R.id.frameLayoutMain,
-            HomeFragment.TAG,
-            homeFragment,
-            homeFragment
-        )
-    }
-
-    private fun showFragment(fragment: Fragment) {
-        val activeFragment = supportFragmentManager.findFragmentByTag(fragment.tag)
-        supportFragmentManager.hideAndShow(activeFragment!!, fragment)
-    }
 }
