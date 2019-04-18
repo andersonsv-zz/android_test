@@ -1,6 +1,10 @@
 package br.com.andersonsv.test.feature.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +17,6 @@ import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
-import br.com.andersonsv.test.network.enjoei.ProductApi
 import br.com.andersonsv.test.network.model.product.HomeProducts
 import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,9 +26,39 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    private lateinit var apiClient: ProductApi
     lateinit var homeProductAdapter: HomeProductAdapter
 
+    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val notConnected = intent.getBooleanExtra(
+                ConnectivityManager
+                    .EXTRA_NO_CONNECTIVITY, false)
+            if (notConnected) {
+                disconnected()
+            } else {
+                connected()
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activity?.registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity?.unregisterReceiver(broadcastReceiver)
+    }
+
+    private fun disconnected() {
+        val showErrorConnectIntent = Intent(activity, ProductDetailActivity::class.java)
+        startActivity(showErrorConnectIntent)
+    }
+
+    private fun connected() {
+        loadFirstPage()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,9 +108,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun productItemClicked(productItem : Product) {
-
-        Toast.makeText(activity, "Clicked: ${productItem.title}", Toast.LENGTH_LONG).show()
-
         val showDetailActivityIntent = Intent(activity, ProductDetailActivity::class.java)
         showDetailActivityIntent.putExtra("product", productItem)
         startActivity(showDetailActivityIntent)

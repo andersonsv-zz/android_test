@@ -1,19 +1,28 @@
 package br.com.andersonsv.test.feature.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import br.com.andersonsv.test.R
+import br.com.andersonsv.test.extension.loadPrimaryPhotoImage
 import br.com.andersonsv.test.network.model.product.Product
-import br.com.andersonsv.test.network.model.user.User
+import kotlinx.android.synthetic.main.activity_product_detail.*
 
-class ProductDetailActivity : Activity() {
+class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_product_detail)
 
-        val product = intent.getParcelableExtra<Product>(INTENT_PRODUCT)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+       val product = intent.getParcelableExtra<Product>(INTENT_PRODUCT)
             ?: throw IllegalStateException("field $INTENT_PRODUCT missing in Intent")
+
+        imageViewBackdropProduct.loadPrimaryPhotoImage(product.photos)
     }
 
     companion object {
@@ -26,4 +35,13 @@ class ProductDetailActivity : Activity() {
             return intent
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
+        }
+        else -> false
+    }
+
 }

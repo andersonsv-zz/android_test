@@ -1,13 +1,11 @@
 package br.com.andersonsv.test.feature.main
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import br.com.andersonsv.test.R
-import br.com.andersonsv.test.extension.addAndHide
-import br.com.andersonsv.test.extension.hideAndShow
 import br.com.andersonsv.test.feature.home.HomeFragment
-import br.com.andersonsv.test.network.enjoei.ProductApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
