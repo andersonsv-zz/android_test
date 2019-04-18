@@ -17,7 +17,7 @@ class ProductDetailActivity : Activity() {
     }
 
     companion object {
-
+        //TODO - constants
         private val INTENT_PRODUCT = "product"
 
         fun newIntent(context: Context, product: Product): Intent {

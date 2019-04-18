@@ -13,22 +13,24 @@ import com.google.android.material.resources.TextAppearance
 import kotlinx.android.synthetic.main.item_home_product.view.*
 import java.text.DecimalFormat
 
-class HomeProductAdapter(private val context: Context, private var results: MutableList<Product>) :
+class HomeProductAdapter(var results: MutableList<Product>, private val clickListener: (Product) -> Unit) :
 RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_home_product, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_product, parent, false)
         return ProductViewHolder(view)
     }
 
     override fun getItemCount() = results.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bindView(results[position])
+        holder.bindView(results[position], clickListener)
     }
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(product: Product) {
+        fun bindView(product: Product,  clickListener: (Product) -> Unit) {
+
+            itemView.setOnClickListener { clickListener(product)}
 
             itemView.imageViewProduct.loadPrimaryPhotoImage(product.photos)
             itemView.textViewTitle.text = product.title
