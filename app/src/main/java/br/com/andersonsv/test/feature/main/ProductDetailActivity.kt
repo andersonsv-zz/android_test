@@ -9,6 +9,11 @@ import br.com.andersonsv.test.R
 import br.com.andersonsv.test.extension.loadPrimaryPhotoImage
 import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import android.view.Menu
+
+
+
+
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -23,6 +28,11 @@ class ProductDetailActivity : AppCompatActivity() {
             ?: throw IllegalStateException("field $INTENT_PRODUCT missing in Intent")
 
         imageViewBackdropProduct.loadPrimaryPhotoImage(product.photos)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_product_detail, menu)
+        return true
     }
 
     companion object {
@@ -43,5 +53,4 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         else -> false
     }
-
 }

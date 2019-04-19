@@ -18,4 +18,8 @@
     <string name="error_text">nosso cyber voo tá chocoalhando. dê uma checada na sua internet pra continuar com a gente :P</string>
     <string name="error_try_again">tente de novo</string>
     <string name="error_image_content_description">imagem de um gato branco sorrindo e com a mão na cabeça</string>
+
+    <!-- Product Detail -->
+    <string name="product_detail_menu_share">compartilhe com seus amigos!</string>
+    <string name="product_detail_menu_more">veja mais opções</string>
 </resources>
