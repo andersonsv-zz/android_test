@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
+import br.com.andersonsv.test.feature.main.ConnectionErrorActivity
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.model.product.HomeProducts
@@ -52,7 +53,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun disconnected() {
-        val showErrorConnectIntent = Intent(activity, ProductDetailActivity::class.java)
+        val showErrorConnectIntent = Intent(activity, ConnectionErrorActivity::class.java)
         startActivity(showErrorConnectIntent)
     }
 
