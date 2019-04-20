@@ -112,8 +112,10 @@
                     app:layout_anchorGravity="bottom|end"
                     app:badgePosition="RightTop"
                     app:srcCompat="@drawable/ic_comment"
-                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/fabLikes"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/fabLikes"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             <com.andremion.counterfab.CounterFab
                     android:id="@+id/fabLikes"
