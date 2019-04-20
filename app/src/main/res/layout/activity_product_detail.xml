@@ -64,7 +64,7 @@
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewOriginalPrice"
+                    android:id="@+id/textViewPrice"
                     app:layout_constraintStart_toEndOf="@+id/textViewCurrencyPrice"
                     android:layout_marginStart="8dp"
                     app:layout_constraintTop_toTopOf="@+id/textViewCurrencyPrice"
@@ -75,11 +75,13 @@
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewPrice"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewOriginalPrice"
-                    app:layout_constraintTop_toTopOf="@+id/textViewOriginalPrice"
-                    android:layout_marginStart="12dp"
-                    app:layout_constraintStart_toEndOf="@+id/textViewOriginalPrice"/>
+                    android:id="@+id/textViewOriginalPrice"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewPrice"
+                    app:layout_constraintTop_toTopOf="@+id/textViewPrice"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/textViewPrice"
+                    style="@style/Text.24sp.Bold"
+                    android:textColor="@color/pink"/>
 
             <TextView
                     android:layout_width="0dp"
@@ -89,18 +91,19 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toStartOf="@+id/textViewInstallments"
                     app:layout_constraintStart_toStartOf="@+id/textViewCurrencyPrice"
-                    style="@style/Text.16sp.Regular"/>
+                    style="@style/Text.16sp.Regular" android:visibility="visible"/>
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewInstallments"
                     app:layout_constraintStart_toEndOf="@+id/textViewDiscount"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewPrice"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewOriginalPrice"
                     android:layout_marginStart="8dp"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDiscount"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewDiscount"
-                    style="@style/Text.16sp.Regular"/>
+                    style="@style/Text.16sp.Regular"
+                    android:textAlignment="textStart" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCurrencyPrice"/>
 
             <com.andremion.counterfab.CounterFab
                     android:id="@+id/fabComments"
@@ -119,30 +122,30 @@
                     app:layout_anchorGravity="bottom|end"
                     app:badgePosition="RightTop"
                     app:srcCompat="@drawable/ic_like"
-                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
             <TextView
-                    android:text="TextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView5"
+                    android:id="@+id/textViewTitle"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDiscount"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    style="@style/Text.20sp.Regular"/>
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewContent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     style="@style/Text.16sp.Regular"/>
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

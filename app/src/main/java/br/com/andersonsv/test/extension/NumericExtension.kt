@@ -29,3 +29,4 @@ fun Double.asBRL(includeCurrency: Boolean = false): String = if (includeCurrency
 
 fun Double.asBRLNoFraction(includeCurrency: Boolean = false): String = if (includeCurrency)
 "R$ " + noSymbolNoFractionFormatter.format(this) else noSymbolNoFractionFormatter.format(this)
+

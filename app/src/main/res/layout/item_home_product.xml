@@ -53,7 +53,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:id="@+id/textViewPrice"
+                    android:id="@+id/textViewOriginalPrice"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     style="@style/ProductPrice"/>

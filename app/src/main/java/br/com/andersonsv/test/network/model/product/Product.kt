@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import br.com.andersonsv.test.network.model.user.User
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
 
 data class Product(
     @field:Json(name = "id")
@@ -33,6 +32,7 @@ data class Product(
 
     @field:Json(name = "user")
     val user: User
+
 ) : Parcelable {
     constructor(source: Parcel) : this(
         source.readInt(),

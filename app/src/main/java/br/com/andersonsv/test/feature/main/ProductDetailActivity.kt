@@ -10,6 +10,7 @@ import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.network.model.product.Product
 import br.com.andersonsv.test.util.Constants
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import java.text.MessageFormat
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -33,13 +34,29 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun configureData(product: Product){
+
+        textViewTitle.text = product.title
         textViewContent.text = product.content
-        textViewOriginalPrice.text = product.originalPrice.asBRLNoFraction(false)
+        textViewPrice.text = product.originalPrice.asBRLNoFraction(false)
+
+        if(product.originalPrice !==  product.price){
+            textViewOriginalPrice.makeVisible()
+            val originalPrice = MessageFormat.format(getString(R.string.product_detail_original_price), product.price.asBRLNoFraction(true))
+            textViewOriginalPrice.text = originalPrice
+        }
 
         if(product.discountPorcentage != 0.0) {
             textViewDiscount.makeVisible()
-            textViewDiscount.text = String.format(getString(R.string.product_detail_discount), product.discountPorcentage)
+            val discount = MessageFormat.format(getString(R.string.product_detail_discount), product.discountPorcentage.asBRLNoFraction())
+            textViewDiscount.text = discount
         }
+
+        if(product.maximumInstallment != 0){
+            textViewInstallments.makeVisible()
+            val installments = MessageFormat.format(getString(R.string.product_detail_installments), product.maximumInstallment)
+            textViewInstallments.text = installments
+        }
+
 
     }
 
