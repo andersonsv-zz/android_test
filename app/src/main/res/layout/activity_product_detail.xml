@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:tools="http://schemas.android.com/tools"
                                                      android:id="@+id/activity_main"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
@@ -11,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary">
+            android:background="@color/pink">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -23,7 +22,7 @@
 
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="400dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/banner"
                     app:layout_collapseMode="parallax" />
@@ -33,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:popupTheme="@style/AppTheme.ActionBar"
                     app:theme="@style/ToolBarStyle" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -72,7 +71,6 @@
                     style="@style/Text.24sp.Bold"/>
 
             <TextView
-                    android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewOriginalPrice"
@@ -81,51 +79,56 @@
                     android:layout_marginStart="8dp"
                     app:layout_constraintStart_toEndOf="@+id/textViewPrice"
                     style="@style/Text.24sp.Bold"
-                    android:textColor="@color/pink"/>
+                    android:textColor="@color/pink" android:visibility="gone"/>
 
             <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewDiscount"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCurrencyPrice"
                     android:layout_marginTop="16dp"
+                    android:paddingEnd="@dimen/padding_smaller"
                     app:layout_constraintEnd_toStartOf="@+id/textViewInstallments"
                     app:layout_constraintStart_toStartOf="@+id/textViewCurrencyPrice"
-                    style="@style/Text.16sp.Regular" android:visibility="visible"/>
+                    style="@style/Text.16sp.Regular" android:visibility="gone"/>
 
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewInstallments"
                     app:layout_constraintStart_toEndOf="@+id/textViewDiscount"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewOriginalPrice"
-                    android:layout_marginStart="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewDiscount"
                     style="@style/Text.16sp.Regular"
-                    android:textAlignment="textStart" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewCurrencyPrice"/>
+                    android:textAlignment="textStart"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCurrencyPrice"
+                    android:visibility="gone"/>
 
-            <com.andremion.counterfab.CounterFab
+            <br.com.andersonsv.test.widget.BadgeButton
                     android:id="@+id/fabComments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_anchorGravity="bottom|end"
-                    app:badgePosition="RightTop"
-                    app:srcCompat="@drawable/ic_comment"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:badgeBackground="@drawable/bgs_1"
+                    app:icon="@drawable/ic_comment"
+                    app:textColor="@android:color/white"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/fabLikes"
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.andremion.counterfab.CounterFab
+
+            <br.com.andersonsv.test.widget.BadgeButton
                     android:id="@+id/fabLikes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_anchorGravity="bottom|end"
-                    app:badgePosition="RightTop"
-                    app:srcCompat="@drawable/ic_like"
-                    android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:badgeBackground="@drawable/bgs_1"
+                    app:icon="@drawable/ic_like"
+                    app:textColor="@android:color/white"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

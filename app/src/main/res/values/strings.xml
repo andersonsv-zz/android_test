@@ -13,6 +13,7 @@
 
     <!-- Home -->
     <string name="homeproductimage_image_product_content_description">imagem principal do produto</string>
+    <string name="home_banner_content_description">um banner com uma ótima promoção!</string>
 
     <!-- Error Page -->
     <string name="error_title">turbulências na rede</string>

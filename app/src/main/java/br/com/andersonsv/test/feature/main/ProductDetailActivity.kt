@@ -11,6 +11,10 @@ import br.com.andersonsv.test.network.model.product.Product
 import br.com.andersonsv.test.util.Constants
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import java.text.MessageFormat
+import android.text.style.StrikethroughSpan
+import android.text.SpannableString
+
+
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -41,7 +45,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
         if(product.originalPrice !==  product.price){
             textViewOriginalPrice.makeVisible()
-            val originalPrice = MessageFormat.format(getString(R.string.product_detail_original_price), product.price.asBRLNoFraction(true))
+
+            val originalPrice = SpannableString(product.price.asBRLNoFraction(true))
+            originalPrice.setSpan(StrikethroughSpan(), 0, originalPrice.length, 0)
+
             textViewOriginalPrice.text = originalPrice
         }
 
@@ -57,7 +64,13 @@ class ProductDetailActivity : AppCompatActivity() {
             textViewInstallments.text = installments
         }
 
+        if(product.likesCount != 0){
+            fabLikes.setBadgeNum(product.likesCount.toString())
+        }
 
+        if(product.publishedCommentsCount != 0){
+            fabComments.setBadgeNum(product.publishedCommentsCount.toString())
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

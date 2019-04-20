@@ -10,11 +10,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
+import br.com.andersonsv.test.extension.isNetworkConnected
+import br.com.andersonsv.test.extension.makeGone
+import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.feature.main.ConnectionErrorActivity
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
@@ -66,11 +67,16 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View? = inflater.inflate(br.com.andersonsv.test.R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadFirstPage()
+
+        if(context!!.isNetworkConnected()){
+            loadFirstPage()
+        } else {
+            disconnected()
+        }
     }
 
     companion object {
@@ -92,19 +98,23 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.setHasFixedSize(true)
 
+        progressBar.makeVisible()
+
         callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
             override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
-                Log.d("TAG", response.body().toString())
 
                 val products = response.body()?.products
 
                 homeProductAdapter.results = products ?: mutableListOf()
-                recyclerView.smoothScrollToPosition(products?.size ?: 0)
+                recyclerView.smoothScrollToPosition(0)
                 homeProductAdapter.notifyDataSetChanged()
+
+                progressBar.makeGone()
             }
 
             override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
                 t.printStackTrace()
+                progressBar.makeGone()
             }
         })
     }
