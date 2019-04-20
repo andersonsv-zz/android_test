@@ -32,7 +32,7 @@ RecyclerView.Adapter<HomeProductAdapter.ProductViewHolder>() {
 
             itemView.imageViewProduct.loadPrimaryPhotoImage(product.photos)
             itemView.textViewTitle.text = product.title
-            itemView.textViewOriginalPrice.text = product.price.asBRL(true)
+            itemView.textViewOriginalPrice.text = product.price.asBRLNoFraction(true)
 
             if (product.discountPorcentage != 0.0) {
 

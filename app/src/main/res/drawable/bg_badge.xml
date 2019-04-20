@@ -6,11 +6,6 @@
         </shape>
     </item>
 
-
-
-    <size
-            android:height="15dp"
-            android:width="15dp" />
     <corners
             android:radius="1dp"/>
 
