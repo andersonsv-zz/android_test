@@ -1,74 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:id="@+id/activity_main"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/productDetailAppBar"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:fitsSystemWindows="true">
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleMarginEnd="64dp">
+                app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
 
             <ImageView
-                    android:id="@+id/imageViewBackdropProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="parallax"/>
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/banner"
+                    app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-            />
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ToolBarStyle" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/nestedScrollView">
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/constraintLayoutProductDetail">
+
             <TextView
-                    android:layout_width="match_parent"
+                    android:text="@string/commom_money_currency"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:lineSpacingExtra="8dp"
+                    android:id="@+id/textViewCurrencyPrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    style="@style/Text.24sp.Light"/>
 
-                    android:text="aaaaa"
-                    android:padding="@dimen/activity_horizontal_margin"
-            />
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewOriginalPrice"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCurrencyPrice"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/textViewCurrencyPrice"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCurrencyPrice"
+                    style="@style/Text.24sp.Bold"/>
 
-           <!-- <include layout="@layout/content_main" />-->
-        </LinearLayout>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPrice"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewOriginalPrice"
+                    app:layout_constraintTop_toTopOf="@+id/textViewOriginalPrice"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/textViewOriginalPrice"/>
 
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewDiscount"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCurrencyPrice"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewInstallments"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCurrencyPrice"
+                    style="@style/Text.16sp.Regular"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewInstallments"
+                    app:layout_constraintStart_toEndOf="@+id/textViewDiscount"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewPrice"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/textViewDiscount"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewDiscount"
+                    style="@style/Text.16sp.Regular"/>
+
+            <com.andremion.counterfab.CounterFab
+                    android:id="@+id/fabComments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_anchorGravity="bottom|end"
+                    app:badgePosition="RightTop"
+                    app:srcCompat="@drawable/ic_comment"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/fabLikes"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.andremion.counterfab.CounterFab
+                    android:id="@+id/fabLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_anchorGravity="bottom|end"
+                    app:badgePosition="RightTop"
+                    app:srcCompat="@drawable/ic_like"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDiscount"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewContent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    style="@style/Text.16sp.Regular"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-   <!-- <android.support.design.widget.FloatingActionButton
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_comment_black_24dp"
-            app:layout_anchor="@id/main.appbar"
-            app:layout_anchorGravity="bottom|right|end"
-    />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

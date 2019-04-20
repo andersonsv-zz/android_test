@@ -15,7 +15,17 @@ val noSymbolFormatter =
         decimalFormatSymbols.currencySymbol = ""
     }
 
+val noSymbolNoFractionFormatter =
+    (NumberFormat.getCurrencyInstance(ptBRLocale) as DecimalFormat).apply {
+        maximumFractionDigits = 0
+        minimumFractionDigits = 0
+        positivePrefix = ""
+        negativePrefix = "-"
+        decimalFormatSymbols.currencySymbol = ""
+    }
+
 fun Double.asBRL(includeCurrency: Boolean = false): String = if (includeCurrency)
     "R$ " + noSymbolFormatter.format(this) else noSymbolFormatter.format(this)
 
-fun Double.asDiscountPorcentage(): String = "-" + this + "%"
+fun Double.asBRLNoFraction(includeCurrency: Boolean = false): String = if (includeCurrency)
+"R$ " + noSymbolNoFractionFormatter.format(this) else noSymbolNoFractionFormatter.format(this)

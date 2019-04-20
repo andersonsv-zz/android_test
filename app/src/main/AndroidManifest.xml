@@ -25,7 +25,8 @@
                     android:value=".feature.main.MainActivity" />
         </activity>
         <activity android:name=".feature.main.ProductDetailActivity"
-                  android:theme="@style/AppTheme.TransparentTheme">
+                  android:theme="@style/AppTheme.TransparentTheme"
+                  android:label="">
         </activity>
 
         <activity android:name=".feature.main.ConnectionErrorActivity"

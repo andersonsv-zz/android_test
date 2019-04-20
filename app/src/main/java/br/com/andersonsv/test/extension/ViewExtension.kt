@@ -11,6 +11,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.network.model.product.Photo
 import br.com.andersonsv.test.network.model.user.User
+import br.com.andersonsv.test.util.Constants
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.Glide.with
@@ -79,10 +80,11 @@ fun ImageView.loadImage(imageUrl: String) {
 
 
 private fun generateImageUrl(crop: String, gravity: String, publicId: String): String {
-    //TODO - constants
-    val template = "http://res.cloudinary.com/demo/image/upload/c_{0},g_{1},w_150,h_200/{2}.jpg"
-    return MessageFormat.format(template, crop, gravity, publicId)
+    return MessageFormat.format(Constants.TEMPLATE_IMAGE_URL, crop, gravity, publicId)
+}
 
+fun Photo.generateImageUrl(): String {
+    return MessageFormat.format(Constants.TEMPLATE_IMAGE_URL, this.crop, this.gravity, this.publicId)
 }
 
 private fun ImageView.startCircularProgress(): CircularProgressDrawable {

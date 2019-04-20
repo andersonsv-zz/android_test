@@ -1,7 +1,5 @@
 package br.com.andersonsv.test.feature.main
 
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.andersonsv.test.R

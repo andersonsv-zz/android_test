@@ -47,5 +47,25 @@
     <dimen name="cardview_default_elevation">4dp</dimen>
     <dimen name="grid_item_margin">4dp</dimen>
 
+    <!-- Size Margins -->
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_68dp">68dp</dimen>
+    <dimen name="margin_84dp">84dp</dimen>
+    <dimen name="margin_18dp">18dp</dimen>
+
+    <!-- Size -->
+    <dimen name="size100dp">100dp</dimen>
+    <dimen name="size110dp">110dp</dimen>
+    <dimen name="size124dp">124dp</dimen>
+    <dimen name="size48dp">48dp</dimen>
+    <dimen name="size36dp">36dp</dimen>
+    <dimen name="size5dp">5dp</dimen>
+    <dimen name="size25dp">25dp</dimen>
+
+    <dimen name="product_detail_indicator_ci_height">5dp</dimen>
+    <dimen name="product_detail_indicator_ci_width">5dp</dimen>
+    <dimen name="height_image_view_highlight_product_detail">296dp</dimen>
+    <dimen name="margin_image_view_highlight_product_detail">32dp</dimen>
 
 </resources>

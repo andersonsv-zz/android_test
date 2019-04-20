@@ -114,6 +114,10 @@
         <item name="android:fontFamily">@font/proxima_nova_semibold</item>
     </style>
 
+    <style name="Text.24sp.Light">
+        <item name="android:fontFamily">@font/proxima_nova_light</item>
+    </style>
+
     <style name="Text.12sp.Regular">
         <item name="android:fontFamily">@font/proxima_nova_regular</item>
     </style>

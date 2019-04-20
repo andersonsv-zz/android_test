@@ -20,6 +20,7 @@ import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.model.product.HomeProducts
 import br.com.andersonsv.test.network.model.product.Product
+import br.com.andersonsv.test.util.Constants
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -110,7 +111,7 @@ class HomeFragment : Fragment() {
 
     private fun productItemClicked(productItem : Product) {
         val showDetailActivityIntent = Intent(activity, ProductDetailActivity::class.java)
-        showDetailActivityIntent.putExtra("product", productItem)
+        showDetailActivityIntent.putExtra(Constants.INTENT_PRODUCT, productItem)
         startActivity(showDetailActivityIntent)
     }
 }
