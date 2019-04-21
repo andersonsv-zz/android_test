@@ -6,18 +6,14 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.extension.NoConnectivityException
-import br.com.andersonsv.test.extension.makeGone
-import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.feature.connection.ConnectionErrorFragment
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
@@ -31,9 +27,7 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    lateinit var homeProductAdapter: HomeProductAdapter
-    private lateinit var mHandler: Handler
-    private lateinit var mRunnable:Runnable
+    lateinit var mHomeProductAdapter: HomeProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,15 +38,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadFirstPage()
-
         actionsSetup()
-
+        loadFirstPage()
     }
 
     private fun actionsSetup(){
-        mHandler = Handler()
-
         homeSwipeToRefresh.setOnRefreshListener {
             loadFirstPage(true)
         }
@@ -71,24 +61,24 @@ class HomeFragment : Fragment() {
 
     private fun loadFirstPage(isSwipe: Boolean = false) {
         try {
-            homeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
-            recyclerView.adapter = homeProductAdapter
+            mHomeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
+            recyclerView.adapter = mHomeProductAdapter
             val mLayoutManager = GridLayoutManager(context, 2)
             recyclerView.layoutManager = mLayoutManager
             recyclerView.setHasFixedSize(true)
 
-            progressBar.makeVisible()
+            progressBarProduct.show()
 
             callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
                 override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
 
                     val products = response.body()?.products
 
-                    homeProductAdapter.results = products ?: mutableListOf()
+                    mHomeProductAdapter.results = products ?: mutableListOf()
                     recyclerView.smoothScrollToPosition(0)
-                    homeProductAdapter.notifyDataSetChanged()
+                    mHomeProductAdapter.notifyDataSetChanged()
 
-                    progressBar.makeGone()
+                    progressBarProduct.hide()
 
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
@@ -97,7 +87,7 @@ class HomeFragment : Fragment() {
 
                 override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
                     t.printStackTrace()
-                    progressBar.makeGone()
+                    progressBarProduct.hide()
 
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
@@ -150,5 +140,4 @@ class HomeFragment : Fragment() {
     private fun connected() {
         loadFirstPage()
     }
-
 }

@@ -18,10 +18,6 @@ import android.text.SpannableString
 
 class ProductDetailActivity : AppCompatActivity() {
 
-    private val SINGLE_IMAGE = 1
-    private var currentImagePosition: Int = 0
-   // private var galleryAdapterClickSubscription: Disposable? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)

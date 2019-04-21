@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val homeFragment = HomeFragment.newInstance()
+    private val mHomeFragment = HomeFragment.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.frameLayoutMain, homeFragment, homeFragment.tag)
+            .add(R.id.frameLayoutMain, mHomeFragment, mHomeFragment.tag)
             .commit()
     }
 
