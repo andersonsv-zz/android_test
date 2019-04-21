@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.andersonsv.test.adapter.HomeProductAdapter
+import br.com.andersonsv.test.extension.NoConnectivityException
 import br.com.andersonsv.test.extension.isNetworkConnected
 import br.com.andersonsv.test.extension.makeGone
 import br.com.andersonsv.test.extension.makeVisible
@@ -72,11 +73,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(context!!.isNetworkConnected()){
-            loadFirstPage()
-        } else {
-            disconnected()
-        }
+        loadFirstPage()
+
     }
 
     companion object {
@@ -87,36 +85,39 @@ class HomeFragment : Fragment() {
     }
 
     private fun callHomeProductsApi(): Call<HomeProducts> {
-        return EnjoeiAPI.productApi.getHomeProducts(1)
+        return EnjoeiAPI(context!!).productApi.getHomeProducts(1)
     }
 
     private fun loadFirstPage() {
+        try {
+            homeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
+            recyclerView.adapter = homeProductAdapter
+            val mLayoutManager = GridLayoutManager(context, 2)
+            recyclerView.layoutManager = mLayoutManager
+            recyclerView.setHasFixedSize(true)
 
-        homeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
-        recyclerView.adapter = homeProductAdapter
-        val mLayoutManager = GridLayoutManager(context, 2)
-        recyclerView.layoutManager = mLayoutManager
-        recyclerView.setHasFixedSize(true)
+            progressBar.makeVisible()
 
-        progressBar.makeVisible()
+            callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
+                override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
 
-        callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
-            override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
+                    val products = response.body()?.products
 
-                val products = response.body()?.products
+                    homeProductAdapter.results = products ?: mutableListOf()
+                    recyclerView.smoothScrollToPosition(0)
+                    homeProductAdapter.notifyDataSetChanged()
 
-                homeProductAdapter.results = products ?: mutableListOf()
-                recyclerView.smoothScrollToPosition(0)
-                homeProductAdapter.notifyDataSetChanged()
+                    progressBar.makeGone()
+                }
 
-                progressBar.makeGone()
-            }
-
-            override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
-                t.printStackTrace()
-                progressBar.makeGone()
-            }
-        })
+                override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
+                    t.printStackTrace()
+                    progressBar.makeGone()
+                }
+            })
+        } catch (e: NoConnectivityException) {
+            disconnected()
+        }
     }
 
     private fun productItemClicked(productItem : Product) {
