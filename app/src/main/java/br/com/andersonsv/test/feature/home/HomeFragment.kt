@@ -6,18 +6,17 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.extension.NoConnectivityException
-import br.com.andersonsv.test.extension.isNetworkConnected
 import br.com.andersonsv.test.extension.makeGone
 import br.com.andersonsv.test.extension.makeVisible
-import br.com.andersonsv.test.feature.main.ConnectionErrorActivity
+import br.com.andersonsv.test.feature.connection.ConnectionErrorFragment
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.model.product.HomeProducts
@@ -31,38 +30,6 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
     lateinit var homeProductAdapter: HomeProductAdapter
-
-    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val notConnected = intent.getBooleanExtra(
-                ConnectivityManager
-                    .EXTRA_NO_CONNECTIVITY, false)
-            if (notConnected) {
-                disconnected()
-            } else {
-                connected()
-            }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        activity?.registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-    }
-
-    override fun onStop() {
-        super.onStop()
-        activity?.unregisterReceiver(broadcastReceiver)
-    }
-
-    private fun disconnected() {
-        val showErrorConnectIntent = Intent(activity, ConnectionErrorActivity::class.java)
-        startActivity(showErrorConnectIntent)
-    }
-
-    private fun connected() {
-        loadFirstPage()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,4 +92,41 @@ class HomeFragment : Fragment() {
         showDetailActivityIntent.putExtra(Constants.INTENT_PRODUCT, productItem)
         startActivity(showDetailActivityIntent)
     }
+
+    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val notConnected = intent.getBooleanExtra(
+                ConnectivityManager
+                    .EXTRA_NO_CONNECTIVITY, false)
+            if (notConnected) {
+                disconnected()
+            } else {
+                connected()
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activity?.registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity?.unregisterReceiver(broadcastReceiver)
+    }
+
+    private fun disconnected() {
+        val connectionErrorFragment = ConnectionErrorFragment.newInstance()
+
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.frameLayoutMain, connectionErrorFragment, connectionErrorFragment.tag)
+            .commit()
+    }
+
+    private fun connected() {
+        loadFirstPage()
+    }
+
 }
