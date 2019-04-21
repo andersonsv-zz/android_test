@@ -5,18 +5,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.com.andersonsv.test.R
-import br.com.andersonsv.test.extension.asBRLNoFraction
-import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.network.model.product.Product
 import br.com.andersonsv.test.util.Constants
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import java.text.MessageFormat
 import android.text.style.StrikethroughSpan
 import android.text.SpannableString
-
-
+import android.widget.ImageView
+import br.com.andersonsv.test.adapter.ImageSliderAdapter
+import br.com.andersonsv.test.extension.*
+import br.com.andersonsv.test.network.model.product.Photo
 
 class ProductDetailActivity : AppCompatActivity() {
+
+    private var currentImagePosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         configureData(product)
 
-        //configureImages(product.photos)
+        configureImages(product.photos)
     }
 
     private fun configureData(product: Product){
@@ -82,7 +84,7 @@ class ProductDetailActivity : AppCompatActivity() {
         else -> false
     }
 
-    /*private fun configureImages(images: MutableList<Photo>) {
+    private fun configureImages(images: MutableList<Photo>) {
 
         var imagesUrl = ArrayList<String>()
 
@@ -90,24 +92,14 @@ class ProductDetailActivity : AppCompatActivity() {
             imagesUrl.add(item.generateImageUrl())
         }
 
-        if (images.size <= SINGLE_IMAGE) indicatorProductImages.makeGone()
-        else indicatorProductImages.makeVisible()
-
-        galleryAdapterClickSubscription?.dispose()
-
         val adapter = ImageSliderAdapter(
             imagesUrl
         ) { view, content ->
             (view as ImageView).loadImage(content)
         }
 
-        galleryAdapterClickSubscription = adapter.clickItem()
-            .subscribe {
-                //clickViewPager.onNext(it)
-            }
-
         viewPagerProductImages.adapter = adapter
         viewPagerProductImages.currentItem = currentImagePosition
         indicatorProductImages.setViewPager(viewPagerProductImages)
-    }*/
+    }
 }

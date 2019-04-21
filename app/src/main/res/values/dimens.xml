@@ -68,4 +68,7 @@
     <dimen name="height_image_view_highlight_product_detail">296dp</dimen>
     <dimen name="margin_image_view_highlight_product_detail">32dp</dimen>
 
+    <!-- Indicator -->
+    <dimen name="indicator_height">24dp</dimen>
+
 </resources>
