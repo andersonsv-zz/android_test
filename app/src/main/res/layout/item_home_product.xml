@@ -73,7 +73,8 @@
                       app:layout_constraintEnd_toEndOf="parent"
                       android:id="@+id/linearLayoutAvatarYeah"
                       app:layout_constraintTop_toBottomOf="@+id/linearLayoutPriceAndSize"
-                      android:gravity="top">
+                      android:gravity="top"
+                      android:baselineAligned="false">
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -108,16 +109,17 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:id="@+id/imageViewYeah"
-                        tools:layout_editor_absoluteY="14dp" app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintEnd_toStartOf="@+id/textViewYeahs"
                         app:srcCompat="@drawable/ic_like"
                         android:paddingEnd="@dimen/padding_normal"/>
                 <TextView
-                        android:text="TextView"
                         android:gravity="center_horizontal|center_vertical"
                         android:layout_width="20dp"
-                        android:layout_height="25dp" android:id="@+id/textViewYeahs"
+                        android:layout_height="25dp"
+                        android:id="@+id/textViewYeahs"
                         tools:layout_editor_absoluteY="14dp"
                         app:layout_constraintStart_toEndOf="@+id/imageViewYeah"
                         app:layout_constraintHorizontal_bias="0.5"
