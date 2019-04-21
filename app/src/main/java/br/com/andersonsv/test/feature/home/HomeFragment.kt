@@ -6,11 +6,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.extension.NoConnectivityException
@@ -30,18 +32,30 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
     lateinit var homeProductAdapter: HomeProductAdapter
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable:Runnable
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(br.com.andersonsv.test.R.layout.fragment_home, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         loadFirstPage()
 
+        actionsSetup()
+
+    }
+
+    private fun actionsSetup(){
+        mHandler = Handler()
+
+        homeSwipeToRefresh.setOnRefreshListener {
+            loadFirstPage(true)
+        }
     }
 
     companion object {
@@ -55,7 +69,7 @@ class HomeFragment : Fragment() {
         return EnjoeiAPI(context!!).productApi.getHomeProducts(1)
     }
 
-    private fun loadFirstPage() {
+    private fun loadFirstPage(isSwipe: Boolean = false) {
         try {
             homeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
             recyclerView.adapter = homeProductAdapter
@@ -75,11 +89,19 @@ class HomeFragment : Fragment() {
                     homeProductAdapter.notifyDataSetChanged()
 
                     progressBar.makeGone()
+
+                    if(isSwipe){
+                        homeSwipeToRefresh.isRefreshing = false
+                    }
                 }
 
                 override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
                     t.printStackTrace()
                     progressBar.makeGone()
+
+                    if(isSwipe){
+                        homeSwipeToRefresh.isRefreshing = false
+                    }
                 }
             })
         } catch (e: NoConnectivityException) {
