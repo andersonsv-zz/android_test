@@ -33,8 +33,6 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation "androidx.core:core-ktx:$rootProject.ext.core_ktx"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rx_java"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rx_android"
 
     //UI
     implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"

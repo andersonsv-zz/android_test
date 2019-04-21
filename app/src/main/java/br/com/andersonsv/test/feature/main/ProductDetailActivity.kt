@@ -89,7 +89,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun configureImages(images: MutableList<Photo>) {
 
-        var imagesUrl = ArrayList<String>()
+        val imagesUrl = ArrayList<String>()
 
         for (item in images){
             imagesUrl.add(item.generateImageUrl())
