@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.extension.NoConnectivityException
+import br.com.andersonsv.test.extension.makeGone
+import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.feature.connection.ConnectionErrorFragment
 import br.com.andersonsv.test.feature.main.ProductDetailActivity
 import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
             recyclerView.layoutManager = mLayoutManager
             recyclerView.setHasFixedSize(true)
 
-            progressBarProduct.show()
+            progressBar.makeVisible()
 
             callHomeProductsApi().enqueue(object : Callback<HomeProducts> {
                 override fun onResponse(call: Call<HomeProducts>, response: Response<HomeProducts>) {
@@ -78,7 +80,7 @@ class HomeFragment : Fragment() {
                     recyclerView.smoothScrollToPosition(0)
                     mHomeProductAdapter.notifyDataSetChanged()
 
-                    progressBarProduct.hide()
+                    progressBar.makeGone()
 
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
@@ -87,7 +89,7 @@ class HomeFragment : Fragment() {
 
                 override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
                     t.printStackTrace()
-                    progressBarProduct.hide()
+                    progressBar.makeGone()
 
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
