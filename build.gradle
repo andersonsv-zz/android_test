@@ -51,4 +51,5 @@ ext {
     ext.junit = "4.12"
     ext.test_runner = "1.1.0-alpha4"
     ext.test_espresso_core = "3.1.0-alpha4"
+    ext.mockito_core = "2.27.0"
 }

@@ -1,0 +1,41 @@
+{
+  "products": [
+      {
+          "id": 1,
+          "discount_percentage": 0,
+          "photos": [
+              {
+                  "public_id": "sunset_shoes",
+                  "crop": "fill",
+                  "gravity": "auto"
+              },
+              {
+                  "public_id": "sample",
+                  "crop": "fill",
+                  "gravity": "auto"
+              }
+          ],
+          "title": "Tenis maneiro",
+          "price": 400,
+          "original_price": 400,
+          "size": "36",
+          "likes_count": 46,
+          "maximum_installment": 10,
+          "published_comments_count": 15,
+          "content": "tenis roxo, pouco usado, tamanho 36",
+          "user": {
+              "id": 1,
+              "name": "Maria Fernanda Le Roux",
+              "avatar": {
+                  "public_id": "lady",
+                  "crop": "thumb",
+                  "gravity": "face"
+              }
+          }
+      }
+  ],
+  "pagination": {
+      "current_page": 1,
+      "total_pages": 2
+  }
+}

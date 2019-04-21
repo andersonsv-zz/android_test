@@ -53,7 +53,9 @@ dependencies {
 
     implementation "me.relex:circleindicator:$rootProject.ext.circle_indicator"
 
+    //Test
     testImplementation "junit:junit:$rootProject.ext.junit"
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito_core"
     androidTestImplementation "androidx.test:runner:$rootProject.ext.test_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.test_espresso_core"
 }
