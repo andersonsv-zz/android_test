@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.andersonsv.test.R
-import br.com.andersonsv.test.extension.*
+import br.com.andersonsv.test.extension.asBRLNoFraction
+import br.com.andersonsv.test.extension.loadAvatar
+import br.com.andersonsv.test.extension.loadPrimaryPhotoImage
+import br.com.andersonsv.test.extension.makeVisible
 import br.com.andersonsv.test.network.model.product.Product
 import kotlinx.android.synthetic.main.item_home_product.view.*
 import java.text.DecimalFormat

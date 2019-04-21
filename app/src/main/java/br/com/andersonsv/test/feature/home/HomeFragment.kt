@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        const val TAG = "home"
         fun newInstance(): HomeFragment {
             return HomeFragment()
         }
@@ -63,7 +62,7 @@ class HomeFragment : Fragment() {
 
     private fun loadFirstPage(isSwipe: Boolean = false) {
         try {
-            mHomeProductAdapter = HomeProductAdapter(mutableListOf(), { productItem : Product -> productItemClicked(productItem) })
+            mHomeProductAdapter = HomeProductAdapter(mutableListOf()) { productItem : Product -> productItemClicked(productItem) }
             recyclerView.adapter = mHomeProductAdapter
             val mLayoutManager = GridLayoutManager(context, 2)
             recyclerView.layoutManager = mLayoutManager

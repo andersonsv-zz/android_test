@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_connection_error.*
 
 class ConnectionErrorFragment : Fragment() {
     companion object {
-        const val TAG = "connectionError"
         fun newInstance(): ConnectionErrorFragment {
             return ConnectionErrorFragment()
         }

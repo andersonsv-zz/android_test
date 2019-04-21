@@ -1,20 +1,23 @@
 package br.com.andersonsv.test.feature.main
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.StrikethroughSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.andersonsv.test.R
+import br.com.andersonsv.test.adapter.ImageSliderAdapter
+import br.com.andersonsv.test.extension.asBRLNoFraction
+import br.com.andersonsv.test.extension.generateImageUrl
+import br.com.andersonsv.test.extension.loadImage
+import br.com.andersonsv.test.extension.makeVisible
+import br.com.andersonsv.test.network.model.product.Photo
 import br.com.andersonsv.test.network.model.product.Product
 import br.com.andersonsv.test.util.Constants
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import java.text.MessageFormat
-import android.text.style.StrikethroughSpan
-import android.text.SpannableString
-import android.widget.ImageView
-import br.com.andersonsv.test.adapter.ImageSliderAdapter
-import br.com.andersonsv.test.extension.*
-import br.com.andersonsv.test.network.model.product.Photo
 
 class ProductDetailActivity : AppCompatActivity() {
 

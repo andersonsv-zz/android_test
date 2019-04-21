@@ -1,15 +1,15 @@
 package br.com.andersonsv.test.network.enjoei
 
 import android.content.Context
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import br.com.andersonsv.test.util.ConnectivityInterceptor
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-class EnjoeiAPI constructor(val mContext: Context) {
+class EnjoeiAPI constructor(mContext: Context) {
 
-    var client = OkHttpClient.Builder()
+    private var client = OkHttpClient.Builder()
         .addInterceptor(ConnectivityInterceptor(mContext))
         .build()
 
