@@ -56,4 +56,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito_core"
     androidTestImplementation "androidx.test:runner:$rootProject.ext.test_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.test_espresso_core"
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.ext.test_espresso_core"
+
+    androidTestImplementation "androidx.test:rules:$rootProject.ext.test_espresso_rules"
 }

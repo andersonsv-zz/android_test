@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.test.espresso.IdlingResource
 import br.com.andersonsv.test.R
 import br.com.andersonsv.test.adapter.HomeProductAdapter
 import br.com.andersonsv.test.extension.NoConnectivityException
@@ -22,6 +24,7 @@ import br.com.andersonsv.test.network.enjoei.EnjoeiAPI
 import br.com.andersonsv.test.network.model.product.HomeProducts
 import br.com.andersonsv.test.network.model.product.Product
 import br.com.andersonsv.test.util.Constants
+import br.com.andersonsv.test.util.SimpleIdlingResource
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +34,17 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
     lateinit var mHomeProductAdapter: HomeProductAdapter
 
+    private var mIdlingResource: SimpleIdlingResource? = null
+
+    @VisibleForTesting
+    fun getIdlingResource(): IdlingResource {
+        if (mIdlingResource == null) {
+            mIdlingResource = SimpleIdlingResource()
+        }
+        return mIdlingResource as SimpleIdlingResource
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +53,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        getIdlingResource()
 
         actionsSetup()
         loadFirstPage()
@@ -62,6 +78,8 @@ class HomeFragment : Fragment() {
 
     private fun loadFirstPage(isSwipe: Boolean = false) {
         try {
+            mIdlingResource?.setIdleState(false)
+
             mHomeProductAdapter = HomeProductAdapter(mutableListOf()) { productItem : Product -> productItemClicked(productItem) }
             recyclerView.adapter = mHomeProductAdapter
             val mLayoutManager = GridLayoutManager(context, 2)
@@ -84,6 +102,8 @@ class HomeFragment : Fragment() {
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
                     }
+
+                    mIdlingResource?.setIdleState(true)
                 }
 
                 override fun onFailure(call: Call<HomeProducts>, t: Throwable) {
@@ -93,6 +113,8 @@ class HomeFragment : Fragment() {
                     if(isSwipe){
                         homeSwipeToRefresh.isRefreshing = false
                     }
+
+                    mIdlingResource?.setIdleState(true)
                 }
             })
         } catch (e: NoConnectivityException) {

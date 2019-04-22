@@ -44,7 +44,7 @@ class ProductDetailActivity : AppCompatActivity() {
         textViewContent.text = product.content
         textViewPrice.text = product.originalPrice.asBRLNoFraction(false)
 
-        if(product.originalPrice !==  product.price){
+        if(product.originalPrice !=  product.price){
             textViewOriginalPrice.makeVisible()
 
             val originalPrice = SpannableString(product.price.asBRLNoFraction(true))
